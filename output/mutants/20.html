@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number14').attr('title', 'AOR');
+        $('.line.number40').attr('title', 'COI');
         
     }, 0);
 </script>
@@ -35,37 +35,87 @@
 </div>
 <h3>Details</h3>
 <ul>
-    <li>module - <code><module 'services' from '/Users/ale/PycharmProjects/mutation_testing/services.py'></code></li>
+    <li>module - <code><module 'rover' from './rover.py'></code></li>
     <li><span class="label label-danger">survived</span></li>
     
-    <li>duration - 0.35 s</li>
+    <li>duration - 0.341 s</li>
     
     
-    <li>tests run - 9</li>
+    <li>tests run - 12</li>
     
 </ul>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>AOR - line 14</li>
+    <li>COI - line 40</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [14]; toolbar: false;">from typing import Union
+<pre class="brush: python; first-line: 1; highlight: [40]; toolbar: false;">from entities import Direction, FacingDirection, Position
 
 
-class ClockService:
-    def __hours_hand(self, hour: int, minutes: int) -> float:
-        base = (hour % 12) * (360 // 12)
-        correction = int((minutes / 60) * (360 // 12))
-        return base + correction
+class Rover:
+    facingstr
+    positionPosition
     
-    def __minutes_hand(self, minutes: int) -> int:
-        return minutes * (360 // 60)
+    def __init__(self, facing: str, position: Position) -> None:
+        self.facing = facing
+        self.position = position
     
-    def between(self, hour: int, minutes: int) -> Union[(float, int)]:
-        return abs(self.__hours_hand(hour, minutes) + self.__minutes_hand(minutes))</pre>
+    def move(self, direction: Direction):
+        if direction == Direction.R:
+            if self.facing == FacingDirection.N:
+                self.facing = FacingDirection.E
+                return
+            if self.facing == FacingDirection.E:
+                self.facing = FacingDirection.S
+                return
+            if self.facing == FacingDirection.S:
+                self.facing = FacingDirection.W
+                return
+            if self.facing == FacingDirection.W:
+                self.facing = FacingDirection.N
+                return
+        if direction == Direction.L:
+            if self.facing == FacingDirection.N:
+                self.facing = FacingDirection.W
+                return
+            if self.facing == FacingDirection.W:
+                self.facing = FacingDirection.S
+                return
+            if self.facing == FacingDirection.S:
+                self.facing = FacingDirection.E
+                return
+            if self.facing == FacingDirection.E:
+                self.facing = FacingDirection.N
+                return
+        if direction == Direction.F:
+            if not (self.facing == FacingDirection.N):
+                self.position.y += 1
+                return
+            if self.facing == FacingDirection.E:
+                self.position.x += 1
+                return
+            if self.facing == FacingDirection.S:
+                self.position.y -= 1
+                return
+            if self.facing == FacingDirection.W:
+                self.position.x -= 1
+                return
+        if direction == Direction.B:
+            if self.facing == FacingDirection.N:
+                self.position.y -= 1
+                return
+            if self.facing == FacingDirection.E:
+                self.position.x -= 1
+                return
+            if self.facing == FacingDirection.S:
+                self.position.y += 1
+                return
+            if self.facing == FacingDirection.W:
+                self.position.x += 1
+                return</pre>
 
     </div>
 </body>

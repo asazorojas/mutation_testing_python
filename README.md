@@ -12,12 +12,12 @@ pip install pytest
 With MutMut
 
 ```
-mutmut run --paths-to-mutate services.py
-mutmut html
-open html/index.html
+rm -rf .mutmut-cache && mutmut run --paths-to-mutate rover.py
+mutmut html && open html/index.html
+
 ```
 
-With Mut.Py
+With Mut.Py (for some reason this doesn't seem to work anymore as it used to do 😡)
 
 ```
 mut.py --target services.py --unit-test test/test_services.py -m --report-html output --runner pytest
